@@ -1,48 +1,166 @@
 ---
-title: "Progetto_Sara"
+title: "Relazione tra battito cardiaco e prestazione ad un test di matematica" 
 author: Daniela
 format: html
 editor: source
-code-fold: true 
+theme: Lux
+code-fold: true
+embed-resources: TRUE
+bibliography: "Bibliografia.bib"
+csl: "apa.csl"
 ---
 
 ```{r}
-echo:FALSE
+#|echo: false
 rm(list=ls())
 ```
 
-Statistiche descrittive
 ```{r}
-media_phobia<- mean(Sara_dataset$phobia)
-ds_phobia<- sd(Sara_dataset$phobia)
-media_mathquiz<- mean(Sara_dataset$mathquiz,na.rm = TRUE)
-ds_mathquiz<- sd(Sara_dataset$mathquiz, na.rm= TRUE)
-media_anx_base<- mean(Sara_dataset$mathquiz,na.rm = TRUE)
-ds_mathquiz<- sd(Sara_dataset$mathquiz, na.rm= TRUE)
+#|echo: FALSE
+
+library(readxl)
+Sara_dataset <- read_excel("Sara_dataset.xls") 
 ```
 
-```{r}
-
-```
-
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Statistiche descrittive del nostro dataset 
 
 ```{r}
-rm(list=ls())
-1 + 1
+#|echo: false
+summary(Sara_dataset)
+```
+##### Possiamo vedere che il campione non riporta alti livelli di timore verso la matematica (phobia) {style="color:#a2798f;"}
+
+### Deviazione standard del battito cardiaco nelle tre condizioni
+```{r}
+#|echo: false
+dev_hrbase<- sd(Sara_dataset$hr_base, na.rm=TRUE)
+round(dev_hrbase,2)
+
+dev_hrpre<- sd(Sara_dataset$hr_pre, na.rm=TRUE)
+round(dev_hrpre, 2)
+
+dev_hrpost<- sd(Sara_dataset$hr_post, na.rm=TRUE)
+round (dev_hrpost,2)
 ```
 
-You can add options to executable code like this
+Deviazione standard HRbase = `r round(dev_hrbase,2)` 
+
+Deviazione standard HRpre = `r round(dev_hrpre,2)`
+
+Deviazione standard HRpost = `r round(dev_hrpost,2)` 
 
 ```{r}
-#| echo: false
-2 * 2
+HRbase<- Sara_dataset$hr_base
+HRpre<- Sara_dataset$hr_pre
+HRpost<- Sara_dataset$hr_post
+hr_tot<-data.frame(HRbase, HRpre, HRpost)
+
+boxplot(hr_tot,
+main="Boxplot delle tre misurazioni",
+ylab="Livello HR",
+col=c("#dec2cb","#c5b9cd","#abb1cf"),
+border="darkblue",
+horizontal=FALSE)
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+
+### Deviazione standard dei risultati al test di matematica
+```{r}
+#|echo: FALSE
+dev_mathquiz<- sd(Sara_dataset$mathquiz, na.rm=TRUE)
+round(dev_mathquiz,2)
+```
+
+Deviazione standard quiz matematica = `r round(dev_mathquiz,2)` 
+
+```{r}
+boxplot(Sara_dataset$mathquiz,
+        main="Punteggi al quiz",
+        ylab="Punteggio",
+        col="#8b9dc3",
+        border="darkblue",
+        horizontal=FALSE)
+```
+
+
+![](images/domanda.png){.absolute fig-align="center" width="150" height="150"}
+
+
+## Rapporto tra frequenza cardiaca e risultato al test di matematica
+
+::::: columns
+::: {.column width="50%"}
+-   Battito cardiaco in condizioni normali 
+-   Battito cardiaco prima del test
+-   Battito cardiaco dopo il test
+:::
+
+::: {.column width="50%"}
+-   Risultati al test di matematica
+:::
+:::::
+
+![](images/heart2.png){.absolute fig-align="center" width="80" height="80"}
+
+### Correlazione tra [hr base]{style="color:#a2798f;"} e risultato al [test di matematica]{style="color:#8b9dc3;"}
+
+```{r}
+corr_base_math<- cor(Sara_dataset$hr_base, Sara_dataset$mathquiz, use="complete.obs", method="pearson")
+
+```
+Correlazione tra HR base e risultati ai test di matematica = `r round(corr_base_math,3)`
+
+#### Grafico
+
+```{r}
+plot (Sara_dataset$hr_base, Sara_dataset$mathquiz, 
+     main="Correlazione tra livelli di HR base e risultati al test di matematica",
+     xlab="HR base", 
+     ylab="Risultati test", 
+     col="#92a8d1", 
+     pch=19)
+abline(lm(mathquiz ~ hr_base, data = Sara_dataset), col = "red")
+```
+
+### Correlazione tra [hr pre]{style="color:#a2798f;"} e risultato al [test di matematica]{style="color:#8b9dc3;"}
+
+```{r}
+corr_pre_math<-cor(Sara_dataset$hr_pre, Sara_dataset$mathquiz, use="complete.obs", method="pearson")
+```
+
+Correlazione tra HR pre e risultati ai test di matematica = `r round(corr_pre_math,3)`
+
+
+
+#### Grafico
+```{r}
+plot (Sara_dataset$hr_pre, Sara_dataset$mathquiz, 
+     main="Correlazione tra livelli di HR pre e risultati al test di matematica",
+     xlab="HR pre", 
+     ylab="Risultati test", 
+     col="#92a8d1", 
+     pch=19)
+abline(lm(mathquiz ~ hr_pre, data = Sara_dataset), col = "red")
+```
+
+### Correlazione tra [hr post]{style="color:#a2798f;"} e risultato al [test di matematica]{style="color:#8b9dc3;"}
+
+```{r}
+corr_post_math<- cor(Sara_dataset$hr_post, Sara_dataset$mathquiz, use="complete.obs", method="pearson")
+```
+
+Correlazione tra HR post e risultati ai test di matematica = `r round(corr_post_math,3)`
+
+#### Grafico
+```{r}
+plot (Sara_dataset$hr_post, Sara_dataset$mathquiz, 
+     main="Correlazione tra livelli di HR post e risultati al test di matematica",
+     xlab="HR post", 
+     ylab="Risultati test", 
+     col="#92a8d1", 
+     pch=19)
+abline(lm(mathquiz ~ hr_post, data = Sara_dataset), col = "red")
+```
+
+### Conclusioni
+Abbiamo preso in considerazione le variabili della frequenza cardiaca e di risultati al test di matematica, indagando la presenza di eventuali correlazioni tra le due misure. Contrariamente ad alcune evidenze presenti in letteratura [@avancini2019psychophysiological] in questo studio non sono emerse correlazioni forti e significative tra le prestazioni ai compiti di matematica e la frequenza cardiaca nelle tre diverse misurazioni effettuate.
