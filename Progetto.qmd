@@ -22,15 +22,17 @@ library(readxl)
 Sara_dataset <- read_excel("Sara_dataset.xls") 
 ```
 
-## Statistiche descrittive del nostro dataset 
+## Statistiche descrittive del nostro dataset
 
 ```{r}
 #|echo: false
 summary(Sara_dataset)
 ```
+
 ##### Possiamo vedere che il campione non riporta alti livelli di timore verso la matematica (phobia) {style="color:#a2798f;"}
 
 ### Deviazione standard del battito cardiaco nelle tre condizioni
+
 ```{r}
 #|echo: false
 dev_hrbase<- sd(Sara_dataset$hr_base, na.rm=TRUE)
@@ -43,11 +45,11 @@ dev_hrpost<- sd(Sara_dataset$hr_post, na.rm=TRUE)
 round (dev_hrpost,2)
 ```
 
-Deviazione standard HRbase = `r round(dev_hrbase,2)` 
+Deviazione standard HRbase = `r round(dev_hrbase,2)`
 
 Deviazione standard HRpre = `r round(dev_hrpre,2)`
 
-Deviazione standard HRpost = `r round(dev_hrpost,2)` 
+Deviazione standard HRpost = `r round(dev_hrpost,2)`
 
 ```{r}
 HRbase<- Sara_dataset$hr_base
@@ -63,15 +65,15 @@ border="darkblue",
 horizontal=FALSE)
 ```
 
-
 ### Deviazione standard dei risultati al test di matematica
+
 ```{r}
 #|echo: FALSE
 dev_mathquiz<- sd(Sara_dataset$mathquiz, na.rm=TRUE)
 round(dev_mathquiz,2)
 ```
 
-Deviazione standard quiz matematica = `r round(dev_mathquiz,2)` 
+Deviazione standard quiz matematica = `r round(dev_mathquiz,2)`
 
 ```{r}
 boxplot(Sara_dataset$mathquiz,
@@ -82,15 +84,15 @@ boxplot(Sara_dataset$mathquiz,
         horizontal=FALSE)
 ```
 
+![](uni.jpg){width="116"}
 
 ![](images/domanda.png){.absolute fig-align="center" width="150" height="150"}
-
 
 ## Rapporto tra frequenza cardiaca e risultato al test di matematica
 
 ::::: columns
 ::: {.column width="50%"}
--   Battito cardiaco in condizioni normali 
+-   Battito cardiaco in condizioni normali
 -   Battito cardiaco prima del test
 -   Battito cardiaco dopo il test
 :::
@@ -108,6 +110,7 @@ boxplot(Sara_dataset$mathquiz,
 corr_base_math<- cor(Sara_dataset$hr_base, Sara_dataset$mathquiz, use="complete.obs", method="pearson")
 
 ```
+
 Correlazione tra HR base e risultati ai test di matematica = `r round(corr_base_math,3)`
 
 #### Grafico
@@ -130,9 +133,8 @@ corr_pre_math<-cor(Sara_dataset$hr_pre, Sara_dataset$mathquiz, use="complete.obs
 
 Correlazione tra HR pre e risultati ai test di matematica = `r round(corr_pre_math,3)`
 
-
-
 #### Grafico
+
 ```{r}
 plot (Sara_dataset$hr_pre, Sara_dataset$mathquiz, 
      main="Correlazione tra livelli di HR pre e risultati al test di matematica",
@@ -152,6 +154,7 @@ corr_post_math<- cor(Sara_dataset$hr_post, Sara_dataset$mathquiz, use="complete.
 Correlazione tra HR post e risultati ai test di matematica = `r round(corr_post_math,3)`
 
 #### Grafico
+
 ```{r}
 plot (Sara_dataset$hr_post, Sara_dataset$mathquiz, 
      main="Correlazione tra livelli di HR post e risultati al test di matematica",
@@ -163,4 +166,5 @@ abline(lm(mathquiz ~ hr_post, data = Sara_dataset), col = "red")
 ```
 
 ### Conclusioni
+
 Abbiamo preso in considerazione le variabili della frequenza cardiaca e di risultati al test di matematica, indagando la presenza di eventuali correlazioni tra le due misure. Contrariamente ad alcune evidenze presenti in letteratura [@avancini2019psychophysiological] in questo studio non sono emerse correlazioni forti e significative tra le prestazioni ai compiti di matematica e la frequenza cardiaca nelle tre diverse misurazioni effettuate.

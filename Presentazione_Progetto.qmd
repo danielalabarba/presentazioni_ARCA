@@ -1,0 +1,161 @@
+---
+title: "Relazione tra heart rate e prestazione in matematica"
+author: "Daniela La Barba"
+format:
+  revealjs:
+    code-line-numbers: false
+    theme: simple
+    slide-number: c/t
+    transition: slide
+    background-transition: fade
+    footer: "Università degli Studi di Padova"
+    logo: "images/uni.jpg"
+    incremental: true
+    self-contained: true
+    embed-resources: true
+    code-fold: false
+    code-summary: "Codice"
+    code-overflow: wrap
+    toc: true 
+    toc-title: Indice
+    toc-location: left 
+    bibliography: Bibliografia.bib
+    csl: apa.csl
+    include-in-header:
+          - text: |
+              <style>
+              #title-slide .title {
+                font-size: 3em;
+                color: #8b9dc3;
+              }
+              .slide-logo {
+                height: 120px !important;
+                max-height: none !important;
+                position: absolute !important;
+                bottom: 10px !important;
+                right: 10px !important;
+                top: unset !important;
+                left: unset !important;
+              }
+              </style>
+execute:
+  echo: true 
+  output: true
+  cache: true
+editor: source
+---
+
+```{r}
+#| echo: false
+
+rm(list=ls())
+
+
+```
+
+```{r}
+#| echo: false
+library(readxl)
+Sara_dataset <- read_excel("Sara_dataset.xls") 
+```
+
+## Grafici deviazione standard {.scrollable transition=slide}
+
+```{r}
+#| echo: false
+HRbase<- Sara_dataset$hr_base
+HRpre<- Sara_dataset$hr_pre
+HRpost<- Sara_dataset$hr_post
+hr_tot<-data.frame(HRbase, HRpre, HRpost)
+
+boxplot(hr_tot,
+main="Boxplot delle tre misurazioni",
+ylab="Livello HR",
+col=c("#dec2cb","#c5b9cd","#abb1cf"),
+border="darkblue",
+horizontal=FALSE)
+
+boxplot(Sara_dataset$mathquiz,
+        main="Punteggi al quiz",
+        ylab="Punteggio",
+        col="#8b9dc3",
+        border="darkblue",
+        horizontal=FALSE)
+```
+
+## Correlazione tra [hr base]{style="color:#a2798f;"} e risultato al [test di matematica]{style="color:#8b9dc3;"} {.scrollable transition=slide}
+
+```{r}
+cor.test(Sara_dataset$hr_base, Sara_dataset$mathquiz, use="complete.obs", method="pearson")
+```
+
+
+## Grafico {.smaller transition=fade .unlisted}
+```{r}
+#| results: markup
+#| label: fig-hr
+
+plot (Sara_dataset$hr_base, Sara_dataset$mathquiz, 
+     main="Correlazione tra livelli di HR base e risultati al test di matematica",
+     xlab="HR base", 
+     ylab="Risultati test", 
+     col="#92a8d1", 
+     pch=19)
+abline(lm(mathquiz ~ hr_base, data = Sara_dataset), col = "red")
+```
+
+##  Correlazione tra [hr pre]{style="color:#a2798f;"} e risultato al [test di matematica]{style="color:#8b9dc3;"} {.scrollable .smaller transition=slide}
+
+```{r}
+cor.test(Sara_dataset$hr_pre, Sara_dataset$mathquiz, use="complete.obs", method="pearson")
+```
+
+## Grafico {.smaller transition=fade .unlisted}
+```{r}
+plot (Sara_dataset$hr_pre, Sara_dataset$mathquiz, 
+     main="Correlazione tra livelli di HR pre e risultati al test di matematica",
+     xlab="HR pre", 
+     ylab="Risultati test", 
+     col="#92a8d1", 
+     pch=19)
+abline(lm(mathquiz ~ hr_pre, data = Sara_dataset), col = "red")
+```
+
+## Correlazione tra [hr post]{style="color:#a2798f;"} e risultato al [test di matematica]{style="color:#8b9dc3;"} {.scrollable .smaller transition=slide}
+
+```{r}
+cor.test(Sara_dataset$hr_post, Sara_dataset$mathquiz, use="complete.obs", method="pearson")
+```
+
+## Grafico {.smaller transition="“slide”".unlisted}
+```{r}
+plot (Sara_dataset$hr_post, Sara_dataset$mathquiz, 
+     main="Correlazione tra livelli di HR post e risultati al test di matematica",
+     xlab="HR post", 
+     ylab="Risultati test", 
+     col="#92a8d1", 
+     pch=19)
+abline(lm(mathquiz ~ hr_post, data = Sara_dataset), col = "red")
+```
+
+## Cosa possiamo dedurre? 
+-   I livelli di frequenza cardiaca in condizioni normali non sono associati ai risultati al test
+-   Maggiori livelli frequenza cardiaca pre esame sono maggiormente associati a risultati peggiori nel test
+-   Maggiori livelli frequenza cardiaca post esame sono maggiormente associati a risultati peggiori nel test
+
+![](images/heart2.png){.absolute bottom="0" right="450" width="160" height="180" .fragment}
+
+
+## Conclusioni 
+::: {auto-animate="true"}
+Contrariamente ad alcune evidenze presenti in letteratura [^1] in questo studio non sono emerse correlazioni forti e significative tra le prestazioni ai compiti di matematica e la frequenza cardiaca  nelle tre diverse misurazioni effettuate.
+
+[^1]:  Avancini, C., & Szűcs, D. (2019). Psychophysiological correlates of mathematics anxiety. Mathematics Anxiety, 42–61.
+::: 
+
+##  {background-color="#abb1cf"} 
+
+::: {style="display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 2em; color: black;"}
+Grazie dell'attenzione!!
+:::
+
