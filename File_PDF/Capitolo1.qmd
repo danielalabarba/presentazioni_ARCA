@@ -1,0 +1,5 @@
+# Capitolo 1
+
+```{r}
+![](images/heart2.png){#figura1}
+```

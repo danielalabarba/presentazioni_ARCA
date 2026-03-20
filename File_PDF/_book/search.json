@@ -1,0 +1,62 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Tesi",
+    "section": "",
+    "text": "Indice\ninizio",
+    "crumbs": [
+      "Indice"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "Introduzione",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nVedi Avancini and Sz (2019) per approfondire\n\n\n\n\nAvancini, Chiara, and Dénes Sz. 2019. “Psychophysiological Correlates of Mathematics Anxiety.” Mathematics Anxiety, 4261.",
+    "crumbs": [
+      "Introduzione"
+    ]
+  },
+  {
+    "objectID": "Capitolo1.html",
+    "href": "Capitolo1.html",
+    "title": "1  Capitolo 1",
+    "section": "",
+    "text": "totale &lt;- 5-3\ntotale\n\n[1] 2",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Capitolo 1</span>"
+    ]
+  },
+  {
+    "objectID": "Capitolo2.html",
+    "href": "Capitolo2.html",
+    "title": "2  Capitolo 2",
+    "section": "",
+    "text": "RISULTATI:\n\nI livelli di frequenza cardiaca in condizioni normali non sono associati ai risultati al test\nMaggiori livelli frequenza cardiaca pre esame sono maggiormente associati a risultati peggiori nel test\nMaggiori livelli frequenza cardiaca post esame sono maggiormente associati a risultati peggiori nel test",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Capitolo 2</span>"
+    ]
+  },
+  {
+    "objectID": "Conclusioni.html",
+    "href": "Conclusioni.html",
+    "title": "3  Conclusioni",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Conclusioni</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Avancini, Chiara, and Dénes Sz. 2019. “Psychophysiological\nCorrelates of Mathematics Anxiety.” Mathematics Anxiety,\n4261.",
+    "crumbs": [
+      "References"
+    ]
+  }
+]

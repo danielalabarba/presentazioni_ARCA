@@ -1,0 +1,35 @@
+project:
+  type: book
+
+book:
+  title: "Tesi"
+  author: "Daniela La Barba"
+  date: "3/19/2026"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - Capitolo1.qmd
+    - Capitolo2.qmd
+    - Conclusioni.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+    papersize: a4
+    fontsize: 12pt
+    margin-left: 1.5in   # Adjust margins for binding
+    margin-right: 1in
+    toc: true            # Table of Contents
+    number-sections: true
+    colorlinks: true    
+    fontfamily: times
+
+
+

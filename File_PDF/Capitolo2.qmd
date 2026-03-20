@@ -1,0 +1,11 @@
+# Capitolo 2
+
+RISULTATI:
+
+-   I livelli di frequenza cardiaca in condizioni normali non sono associati ai risultati al test
+
+-   Maggiori livelli frequenza cardiaca pre esame sono maggiormente associati a risultati peggiori nel test
+
+-   Maggiori livelli frequenza cardiaca post esame sono maggiormente associati a risultati peggiori nel test
+
+
